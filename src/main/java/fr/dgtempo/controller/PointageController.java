@@ -19,4 +19,24 @@ public class PointageController {
         pointageService.enregistrerArrivee();
     }
 
+    // Endpoint pour enregistrer la pause
+    @PostMapping("/pause")
+    @ResponseStatus(HttpStatus.OK)
+    public void enregistrerPause() {
+        pointageService.enregistrerPause();
+    }
+
+    // Endpoint pour enregistrer le retour de pause
+    @PostMapping("/reprise")
+    @ResponseStatus(HttpStatus.OK)
+    public void enregistrerReprise() {
+        pointageService.enregistrerReprise();
+    }
+
+    // Endpoint pour enregistrer le départ
+    @PostMapping("/depart")
+    @ResponseStatus(HttpStatus.OK)
+    public void enregistrerDepart() {
+        pointageService.enregistrerDepart();
+    }
 }
