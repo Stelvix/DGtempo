@@ -14,28 +14,30 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity 
-@Table (name = "users")
-@Getter 
-@Setter 
-@NoArgsConstructor 
+@Entity
+@Table(name = "users")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Users {
-@Id 
-@GeneratedValue(strategy = GenerationType.IDENTITY)
- private Long id;
+    public static final String DEFAULT_ROLE = "USER";
 
- @Column (nullable = false, unique = true)
- private String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
- @Column (nullable = false, unique = true)
- private String email;
+    @Column(nullable = false, unique = true)
+    private String username;
 
- @Column (nullable = false)
- private String password;
+    @Column(nullable = false, unique = true)
+    private String email;
 
- @Column (nullable = false)
- private String role;
+    @Column(nullable = false)
+    private String password;
 
- @OneToMany(mappedBy = "user")
- private List<Pointage> pointages = new ArrayList<>();
+    @Column(nullable = false)
+    private String role = DEFAULT_ROLE;
+
+    @OneToMany(mappedBy = "user")
+    private List<Pointage> pointages = new ArrayList<>();
 }

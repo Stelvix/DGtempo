@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.CONFLICT,
                 exception.getMessage());
 
-        problem.setTitle("Conflit de pointage");
+        problem.setTitle("Conflit");
 
         return problem;
     }

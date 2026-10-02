@@ -10,6 +10,8 @@ import fr.dgtempo.repository.UserRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +19,16 @@ public class PointageService {
     // on inject le repo
     private final PointageRepository pointageRepository;
     private final UserRepository userRepository;
+
+    @Transactional(readOnly = true)
+    public Optional<Pointage> recupererPointageDuJour(Long userId) {
+        return pointageRepository.findPointageByDateAndUserId(LocalDate.now(), userId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Pointage> recupererHistorique(Long userId) {
+        return pointageRepository.findAllByUserIdOrderByDateDesc(userId);
+    }
 
     // méthode pour enregistrer l'arrivée d'un employé
     @Transactional
@@ -93,7 +105,7 @@ public class PointageService {
         // on récupère le pointage existant
         Pointage pointageExistant = pointageRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Pointage non trouvé avec l'ID : " + id));
-                
+
         // on récupère l'utilisateur
         var utilisateur = userRepository.findByEmail(email);
         if (utilisateur == null) {
