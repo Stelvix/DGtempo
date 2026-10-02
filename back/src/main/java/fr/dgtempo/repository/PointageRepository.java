@@ -11,4 +11,7 @@ public interface PointageRepository extends JpaRepository<Pointage, Long> {
 
     Optional<Pointage> findByDate(LocalDate date);
 
+    // recuperer un pointage en fonction de l'utilisateur 
+    Optional<Pointage> findPointageByDateAndUserId(LocalDate date, Long userId);
+
 }
