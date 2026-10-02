@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" role="img" aria-labelledby="title">
+  <title id="title">DGsys</title>
+  <g transform="translate(10 6)">
+    <path fill="#b7b7b7" d="M0 15 56 4l13 7-56 11v49L0 63z"/>
+    <path fill="#aaa" d="m56 4 12 7v49l-12 7z"/>
+    <path fill="#fff" d="m14 22 54-11v49L14 71z"/>
+    <path fill="#d9d9d9" d="m14 22 54-11v2L16 24v44l-2 3z"/>
+    <path fill="#243e73" d="m38 24 13-3v34l-13 3z"/>
+    <path fill="#12b8e8" d="m23 52 28-6v9l-28 6z"/>
+  </g>
+  <text x="91" y="49" fill="#243e73" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="-.7">DGsys</text>
+</svg>

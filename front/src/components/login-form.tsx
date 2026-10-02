@@ -1,24 +1,30 @@
 import { useState } from 'react'
 import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail } from 'lucide-react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
-import { Button } from '@/components/ui/button'
-
-type LoginValues = {
-    email: string
-    password: string
-}
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { authApi } from '../services/auth'
+import type { LoginRequest } from '../types/user'
+import { Button } from './ui/button'
 
 export function LoginForm() {
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [message, setMessage] = useState('')
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
-    } = useForm<LoginValues>()
+    } = useForm<LoginRequest>()
 
-    const onSubmit: SubmitHandler<LoginValues> = () => {
-        setMessage('Le service de connexion n’est pas encore configuré.')
+    const onSubmit: SubmitHandler<LoginRequest> = async (credentials) => {
+        setMessage('')
+        try {
+            await authApi.login(credentials)
+            navigate('/home', { replace: true })
+        } catch (error) {
+            setMessage(error instanceof Error ? error.message : 'Connexion impossible.')
+        }
     }
 
     return (
@@ -98,7 +104,7 @@ export function LoginForm() {
                     </p>
                 )}
 
-                <Button className="mt-2" type="submit" disabled={isSubmitting}>
+                <Button className="mt-2 bg-sky-600 text-white hover:bg-sky-700" type="submit" disabled={isSubmitting}>
                     {isSubmitting ? 'Connexion…' : 'Se connecter'}
                     <ArrowRight className="size-5" aria-hidden="true" />
                 </Button>
@@ -107,7 +113,10 @@ export function LoginForm() {
             </form>
 
             <p className="mt-7 text-sm leading-relaxed text-slate-500">
-                Vous n’avez pas de compte ? Contactez votre responsable.
+                Vous n’avez pas de compte ?{' '}
+                <Link className="font-medium text-sky-700 hover:text-sky-900" to="/signup">
+                    Créer un compte
+                </Link>
             </p>
         </div>
     )
