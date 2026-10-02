@@ -15,28 +15,28 @@ public class PointageController {
     // Endpoint pour enregistrer l'arrivée
     @PostMapping("/arrivee")
     @ResponseStatus(HttpStatus.CREATED)
-    public void enregistrerArrivee() {
-        pointageService.enregistrerArrivee();
+    public void enregistrerArrivee(@RequestParam Long userId) {
+        pointageService.enregistrerArrivee(userId);
     }
 
     // Endpoint pour enregistrer la pause
     @PostMapping("/pause")
     @ResponseStatus(HttpStatus.OK)
-    public void enregistrerPause() {
-        pointageService.enregistrerPause();
+    public void enregistrerPause(@RequestParam Long userId) {
+        pointageService.enregistrerPause(userId);
     }
 
     // Endpoint pour enregistrer le retour de pause
     @PostMapping("/reprise")
     @ResponseStatus(HttpStatus.OK)
-    public void enregistrerReprise() {
-        pointageService.enregistrerReprise();
+    public void enregistrerReprise(@RequestParam Long userId) {
+        pointageService.enregistrerReprise(userId);
     }
 
     // Endpoint pour enregistrer le départ
     @PostMapping("/depart")
     @ResponseStatus(HttpStatus.OK)
-    public void enregistrerDepart() {
-        pointageService.enregistrerDepart();
+    public void enregistrerDepart(@RequestParam Long userId) {
+        pointageService.enregistrerDepart(userId);
     }
 }
